@@ -7,7 +7,11 @@
 #import the turtle module
 #import the Client class from the turtle_chat_client module
 #Finally, from the turtle_chat_widgets module, import two classes: Button and TextInput
+
 #####################################################################################
+import turtle
+from turtle_chat_client import Client
+from turtle_chat_widgets import Button , TextInput
 #####################################################################################
 
 #####################################################################################
@@ -15,7 +19,7 @@
 #####################################################################################
 #Make a class called TextBox, which will be a subclass of TextInput.
 #Because TextInput is an abstract class, you must implement its abstract
-#methods.  There are two:
+#methods.  There are two :
 #
 #draw_box
 #write_msg
@@ -36,6 +40,31 @@
 #3. If you want to make a newline character (i.e. go to the next line), just add
 #   \r to your string.  Test it out at the Python shell for practice
 #####################################################################################
+class TextBox(TextInput):
+    def draw_box(self):
+        self.pos= (-200,-200)
+        turtle.hideturtle()
+        self.writer.hideturtle()
+        self.turtle=turtle.clone()
+        self.writer.penup()
+        self.writer.goto(self.pos)
+        self.writer.pendown()
+        self.writer.goto(self.width,-200)
+        self.writer.goto(self.width,self.hight)
+        self.writer.goto(-200,self.hight)
+        self.writer.goto(self.pos)
+
+    def write_msg(self):
+       self.writer.goto(-self.width/2+10+self.pos[0],self.pos[1]-self.hight/2+20)
+       self.writer.pendown()
+       self.writer.write(self.get_msg())
+
+
+class SendButton (Button)
+    def __init__(self,view,my_turtle=None,shape=None,pos=(0,0)):
+    def fun (self):
+        self.username.send(new_msg)
+    
 #####################################################################################
 
 #####################################################################################
