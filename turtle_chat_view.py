@@ -1,5 +1,5 @@
 #2016-2017 PERSONAL PROJECTS: TurtleChat!
-#WRITE YOUR NAME HERE!
+#WRITE YOUR NAME HERE! nasif francis
 
 #####################################################################################
 #                                   IMPORTS                                         #
@@ -43,8 +43,8 @@ from turtle_chat_widgets import Button , TextInput
 class TextBox(TextInput):
     def draw_box(self):
         self.pos= (-145,-200)
-        self.height =5
-        self.width =150
+        self.hight =5
+        self.width =100
         turtle.hideturtle()
         self.writer.hideturtle()
         self.turtle=turtle.clone()
@@ -155,11 +155,10 @@ class View:
         #
         #at the Python shell.
         ###
-        my_client = Client()
+        my_client = Client
         self.my_client=my_client
-        textbox = TextBox
+        textbox = TextBox()
         self.textbox = textbox
-        self.textbox.drawbox()
         self.button = SendfButton(self)
         ###
         #This list will store all of the messages.
@@ -215,6 +214,7 @@ class View:
     
 
     def setup_listeners(self):
+        pass
         '''
         Set up send button - additional listener, in addition to click,
         so that return button will send a message.
@@ -266,8 +266,8 @@ class View:
 #it once you have a working view, trying to run you chat#
 #view in different ways.                                #
 #########################################################
-if __name__ == '__main__':
-    my_view=View()
+if __name__ == '__main__': 
+     my_view=View()
     _WAIT_TIME=200 #Time between check for new message, ms
     def check() :
         #msg_in=my_view.my_client.receive()
