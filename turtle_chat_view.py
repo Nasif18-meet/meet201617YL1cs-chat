@@ -84,7 +84,7 @@ class SendButton(Button):
             self.turtle=my_turtle
 
         self.turtle.speed(0)
-        self.turtle,hideturtle()
+        self.turtle.hideturtle()
         self.turtle.penup()
         self.turtle.goto(pos)
 
@@ -159,7 +159,7 @@ class View:
         self.my_client=my_client
         textbox = TextBox()
         self.textbox = textbox
-        self.button = SendfButton(self)
+        self.button = SendButton(self)
         ###
         #This list will store all of the messages.
         #You can add strings to the front of the list using
@@ -206,7 +206,7 @@ class View:
         self.msg_queue.insert(0, self.textbox.new_msg)
         self.display_msg()
         self.textbox.clear_msg()
-        pass
+        
 
     def get_msg(self):
         return self.textbox.get_msg()
@@ -267,11 +267,12 @@ class View:
 #view in different ways.                                #
 #########################################################
 if __name__ == '__main__': 
-     my_view=View()
+    my_view=View()
+    print(my_view.my_client)
     _WAIT_TIME=200 #Time between check for new message, ms
     def check() :
-        #msg_in=my_view.my_client.receive()
-        msg_in=my_view.get_client().receive()
+        msg_in=my_view.my_client.receive()
+        #msg_in=my_view.get_client().receive()
         if not(msg_in is None):
             if msg_in==Client._END_MSG:
                 print('End message received')
