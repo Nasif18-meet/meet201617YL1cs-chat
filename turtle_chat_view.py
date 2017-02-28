@@ -62,7 +62,7 @@ class TextBox(TextInput):
        self.writer.goto(-130,20)
        self.writer.clear()
        self.writer(self.new_msg)
-    
+       
 #####################################################################################
 
 #####################################################################################
@@ -83,14 +83,13 @@ class SendButton(Button):
         else:
             self.turtle=my_turtle
 
-        self.turtle.speed(0)
         self.turtle.hideturtle()
         self.turtle.penup()
         self.turtle.goto(pos)
 
         if shape is None :
             self.turtle.shape('square')
-            self.turtle.shapesize(2,10)
+            self.turtle.shapesize(2,15)
         else:
             turtle.addshape(shape)
             self.turtle.shape(shape)
@@ -155,7 +154,7 @@ class View:
         #
         #at the Python shell.
         ###
-        my_client = Client
+        my_client = Client('Me','Partner',None,None)
         self.my_client=my_client
         textbox = TextBox()
         self.textbox = textbox
@@ -267,12 +266,12 @@ class View:
 #view in different ways.                                #
 #########################################################
 if __name__ == '__main__': 
-    my_view=View()
+    my_view=View
     print(my_view.my_client)
     _WAIT_TIME=200 #Time between check for new message, ms
     def check() :
-        msg_in=my_view.my_client.receive()
-        #msg_in=my_view.get_client().receive()
+        #msg_in=my_view.my_client.receive()
+        msg_in=my_view.get_client().receive()
         if not(msg_in is None):
             if msg_in==Client._END_MSG:
                 print('End message received')
