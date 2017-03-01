@@ -43,7 +43,7 @@ from turtle_chat_widgets import Button , TextInput
 class TextBox(TextInput):
     def draw_box(self):
         self.pos= (-145,-200)
-        self.hight =5
+        self.hight = -2
         self.width =100
         turtle.hideturtle()
         self.writer.hideturtle()
@@ -58,10 +58,11 @@ class TextBox(TextInput):
         self.writer.penup()
 
     def write_msg(self):
+       self.setup_listeners()      
        self.writer.penup()
-       self.writer.goto(-130,20)
+       self.writer.goto(-130,-15)
        self.writer.clear()
-       self.writer(self.new_msg)
+       self.writer.write(self.new_msg)
        
 #####################################################################################
 
@@ -147,15 +148,14 @@ class View:
         ###
         #Set screen dimensions using turtle.setup
         #You can get help on this function, as with other turtle functions,
-        #by typing
+        #by typingusername='Me',partner_name='Partner',hostname=None,port=None)
         #
         #   import turtle
         #   help(turtle.setup)
         #
         #at the Python shell.
         ###
-        my_client = Client('Me','Partner',None,None)
-        self.my_client=my_client
+        self.my_client = Client()
         textbox = TextBox()
         self.textbox = textbox
         self.button = SendButton(self)
@@ -251,7 +251,7 @@ class View:
         for i in range (3):
             self.msg_queue_turtles[i].clear()
         for t in range (3):
-            self.msg_queue_turtles[t].write(self.msg-queue[t])
+            self.msg_queue_turtles[t].write(self.msg_queue[t])
             
 
     def get_client(self):
@@ -266,7 +266,7 @@ class View:
 #view in different ways.                                #
 #########################################################
 if __name__ == '__main__': 
-    my_view=View
+    my_view=View()
     print(my_view.my_client)
     _WAIT_TIME=200 #Time between check for new message, ms
     def check() :
